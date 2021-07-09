@@ -1,0 +1,105 @@
+openapi: 3.0.0
+info:
+  title: hoge
+  version: '1.0'
+  description: ''
+servers:
+  - url: 'http://localhost:3001'
+paths:
+  '/v1/users/{id}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      operationId: get-v1-hogehoge
+    put:
+      summary: ''
+      operationId: put-v1-hogehoge
+      responses:
+        '200':
+          description: OK
+        '':
+          description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/xml:
+            schema:
+              type: object
+              properties:
+                '':
+                  type: string
+            examples:
+              example-1: {}
+    delete:
+      summary: ''
+      operationId: delete-v1-hogehoge
+      responses:
+        '200':
+          description: OK
+    parameters:
+      - schema:
+          type: integer
+        name: id
+        in: path
+        required: true
+  '/users/{name}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: 条件に合致するユーザ情報
+                items:
+                  $ref: '#/components/schemas/User'
+      operationId: get-users
+      description: 検索条件に合致するユーザ情報を取得する
+    post:
+      summary: ''
+      operationId: post-users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    parameters:
+      - schema:
+          type: string
+        name: name
+        in: path
+        required: true
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        height:
+          type: number
+        weight:
+          type: number
+      description: ユーザ情報
+  securitySchemes:
+    API Key - 1:
+      name: API Key
+      type: apiKey
+      in: query
